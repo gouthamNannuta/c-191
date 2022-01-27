@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Goutham's custom game</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  <script src="./controls.js"></script>
+
+  </head>
+
+  <body>
+    <a-scene background="color:#026F90" inspector-plugin-recast>
+      
+      <!--Asset Management-->
+      <a-assets timeout="10000">
+        <a-asset-item
+          id="terrainMap"
+          src="./assets/tiny_city/scene.gltf"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="carModel"
+          src="./assets/flying_car/scene.gltf"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity light="type: ambient; color: white; intensity:10"></a-entity>
+      <a-entity
+        id="terrain"
+        gltf-model="#terrainMap"
+        position="0 100 100"
+        scale="250 250 250"
+      >
+      </a-entity>
+      <a-entity id="camera-rig" movement-controls="speed: 2; constrainToNavMesh: true" position="0 0 -5" drive>
+        <!--Camera and Cursor-->
+        <a-entity id="camera" camera position="0 5 0" look-controls="pointerLockEnabled: false">
+            <a-entity id="weapon" gltf-model="#carModel" position="0 -15 0" rotation="0 0 0" scale="5 5 5"
+            body="type:static; mass:5; shape:none; "
+            shape="shape:sphere; radius:5; offset:0 3 0; "
+            player-movement >
+          </a-entity>
+        </a-entity>
+      </a-entity>
+     
+    </a-scene>
+  </body>
+</html>
+
